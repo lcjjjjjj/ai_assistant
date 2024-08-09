@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div>Exfile</div>
+    <Panel />
 </template>
 
 <style scoped>

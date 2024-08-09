@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div>User</div>
+    <Panel />
 </template>
 
 <style scoped>
