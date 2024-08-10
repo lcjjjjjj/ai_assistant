@@ -20,7 +20,7 @@ const saveFile = () => {
         const link = document.createElement('a')
         const url = window.URL.createObjectURL(blob)
         link.href = url
-        link.download = ''
+        link.download = 'save.txt'
         document.body.appendChild(link)
         link.click()
         document.body.removeChild(link)
