@@ -19,6 +19,7 @@ def recv_file():
 @app.route('/textsum', methods=['POST'])
 def recv_text():
     data = request.json
+    print(data)
     result = text_rewrite(data['text'])
     # print(result)
     response = {

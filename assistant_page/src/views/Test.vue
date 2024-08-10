@@ -1,39 +1,27 @@
 <script setup>
+
+const saveFile = () => {
+  const fileContent = 'This is a sample text file.'
+  const blob = new Blob([fileContent], { type: 'text/plain' })
+  const link = document.createElement('a')
+  const url = window.URL.createObjectURL(blob)
+  link.href = url
+  link.download = ''
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  window.URL.revokeObjectURL(url)
+}
+
 </script>
 
 <template>
-    <el-dropdown class="dropdown" trigger="click">
-      <span class="el-dropdown-link">
-        Dropdown List
-        <el-icon class="el-icon--right">
-          <arrow-down />
-        </el-icon>
-      </span>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item>Action 1</el-dropdown-item>
-          <el-dropdown-item>Action 2</el-dropdown-item>
-          <el-dropdown-item>Action 3</el-dropdown-item>
-          <el-dropdown-item disabled>Action 4</el-dropdown-item>
-          <el-dropdown-item divided>Action 5</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-  </template>
-  
-  <script lang="ts" setup>
-  import { ArrowDown } from '@element-plus/icons-vue'
-  </script>
-  <style scoped>
-  .example-showcase .el-dropdown-link {
-    cursor: pointer;
-    color: var(--el-color-primary);
-    display: flex;
-    align-items: center;
-  }
+  <div>
+    <button @click="saveFile">Save File</button>
+  </div>
+</template>
 
-.dropdown {
-    height: 30px;
-    
-}
+
+<style scoped>
+
 </style>

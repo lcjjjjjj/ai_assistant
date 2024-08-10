@@ -32,14 +32,6 @@ const router = createRouter({
             id: '3', name: '音频转换', icon: 'Refresh', path: '/exfile', describe: '音频转换，上传或录音音频文件，可选择指定的格式保存。'
           },
           component: () => import('../views/exfile/Exfile.vue')
-        },
-        {
-          path: '/user',
-          name: 'user',
-          meta: {
-            id: '4', name: '账号管理', icon: 'User', path: '/user', describe: '用户管理，可重置用户密码，管理用户信息'
-          },
-          component: () => import('../views/user/User.vue')
         }
       ]
     },
@@ -53,9 +45,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // 检查页面是否刷新
-  // console.log(to.path)
-  // console.log(from.name)
-  if (from.name === undefined && to.path !== '/') {
+  console.log(to.path)
+  console.log(from.name)
+  if (from.name === undefined && to.path !== '/' && to.path !== '/test') {
     next('/');
   } else {
     next();

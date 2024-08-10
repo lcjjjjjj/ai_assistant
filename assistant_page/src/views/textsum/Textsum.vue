@@ -1,5 +1,6 @@
 <script setup>
 import Panel from '@/components/Panel.vue';
+import { ElMessageBox } from 'element-plus';
 import { postText } from '@/api';
 import { ref } from 'vue'
 const textarea = ref('')
@@ -10,6 +11,24 @@ const onClick = () => {
         console.log(res)
         result.value = res.data.msg
     })
+}
+
+const saveFile = () => {
+    if (result.value !== ''){
+        const fileContent = result.value
+        const blob = new Blob([fileContent],{ type: 'text/plain' })
+        const link = document.createElement('a')
+        const url = window.URL.createObjectURL(blob)
+        link.href = url
+        link.download = ''
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        window.URL.revokeObjectURL(url)
+    }
+    else{
+        ElMessageBox.alert('保存的内容不能为空','温馨提示',{confirmButtonText: '确定',})
+    }
 }
 
 </script>
@@ -27,7 +46,7 @@ const onClick = () => {
     </div>
     <div class="buttons">
         <el-button type="primary" round @Click="onClick">改写</el-button>
-        <el-button type="success" round>保存</el-button>
+        <el-button type="success" round @Click="saveFile">保存</el-button>
     </div>
     <div class="textsum-area">
         <el-input
